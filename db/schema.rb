@@ -10,16 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_21_232253) do
+ActiveRecord::Schema.define(version: 2020_01_22_205257) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.integer "meal_id"
+    t.integer "restriction_id"
+  end
+
+  create_table "meal_ingredients", force: :cascade do |t|
+    t.integer "meal_id"
+    t.integer "ingredient_id"
   end
 
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.integer "calorie_count"
+  end
+
+  create_table "restrictions", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "lactose_intolerant"
+    t.boolean "halal"
+    t.boolean "vegetarian"
+    t.boolean "vegan"
+    t.boolean "organic"
+    t.boolean "none"
+  end
+
+  create_table "user", force: :cascade do |t|
+    t.string "username"
   end
 
 end
